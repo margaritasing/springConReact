@@ -28,4 +28,6 @@ public class Student {
     private Calendar registDate;
 
 
+    public Student(String name, String address) {
+    }
 }

@@ -2,6 +2,7 @@ package com.margaritasing.springwithreact.Controller;
 
 import com.margaritasing.springwithreact.Model.Student;
 import com.margaritasing.springwithreact.Service.StudentService;
+import com.margaritasing.springwithreact.dto.StudentDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,8 +21,8 @@ public class StudentController {
     }
 
     @PostMapping("/add")
-    public String add(@RequestBody Student student){
-        studentService.saveStudent(student);
+    public String add(@RequestBody StudentDto studentDto){
+        studentService.saveStudent(studentDto);
         return "New student is added";
     }
 
