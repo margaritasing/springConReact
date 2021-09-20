@@ -15,7 +15,7 @@ import java.util.Calendar;
 public class Student {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true)
-    private int id;
+    private Long id;
 
     @Column(name = "name", nullable = false, length = 100)
     private String name;
