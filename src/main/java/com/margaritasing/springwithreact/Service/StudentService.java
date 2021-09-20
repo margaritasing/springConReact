@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface StudentService {
 
-    Student saveStudent(StudentDto student);
+    Student saveStudent(Student student);
 
-    List<String> getAllStudents();
+    List<String> getAllStudents(Long id);
 
     void borrar(Long id);
 

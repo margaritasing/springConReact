@@ -23,15 +23,16 @@ public class StudentServiceImpl implements StudentService {
 
 
     @Override
-    public Student saveStudent(StudentDto student) {
-        Student student1 = new Student(student.getName(),
-                            student.getAddress());
-        return studentRepository.save(student1);
+    public Student saveStudent(Student student) {
+        if (student.getName() != null || student.getAddress() != null)
+            studentRepository.save(student);
+        return student;
+
     }
 
 
     @Override
-    public List<String> getAllStudents() {
+    public List<String> getAllStudents(Long id) {
         List<Student> studentList = studentRepository.findAll();
         return studentList
                 .stream()
