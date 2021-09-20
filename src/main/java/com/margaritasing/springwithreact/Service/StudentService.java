@@ -13,6 +13,8 @@ public interface StudentService {
 
     void borrar(Long id);
 
+    List<Student> getAllDate();
+
     StudentDto Update(Long id, StudentDto student);
 
 }

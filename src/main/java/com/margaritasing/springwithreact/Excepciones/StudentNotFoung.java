@@ -1,4 +1,4 @@
-package com.margaritasing.springwithreact.Service;
+package com.margaritasing.springwithreact.Excepciones;
 
 
 import org.springframework.http.HttpStatus;

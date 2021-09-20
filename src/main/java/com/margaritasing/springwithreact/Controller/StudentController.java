@@ -1,6 +1,5 @@
 package com.margaritasing.springwithreact.Controller;
 
-import com.margaritasing.springwithreact.Model.Student;
 import com.margaritasing.springwithreact.Service.StudentService;
 import com.margaritasing.springwithreact.dto.StudentDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +26,7 @@ public class StudentController {
     }
 
     @GetMapping("/getAll")
-    public List<Student> list(){
+    public List<String> list(){
         return studentService.getAllStudents();
     }
 

@@ -1,6 +1,7 @@
 package com.margaritasing.springwithreact.Service;
 
 
+import com.margaritasing.springwithreact.Excepciones.StudentNotFoung;
 import com.margaritasing.springwithreact.Model.Student;
 import com.margaritasing.springwithreact.Repository.StudentRepository;
 import com.margaritasing.springwithreact.dto.StudentDto;
@@ -28,6 +29,7 @@ public class StudentServiceImpl implements StudentService {
         return studentRepository.save(student1);
     }
 
+
     @Override
     public List<String> getAllStudents() {
         List<Student> studentList = studentRepository.findAll();
@@ -42,6 +44,11 @@ public class StudentServiceImpl implements StudentService {
         if (studentRepository.existsById(id))
             studentRepository.deleteById(id);
         
+    }
+
+    @Override
+    public List<Student> getAllDate() {
+        return studentRepository.findAll();
     }
 
     @Override
