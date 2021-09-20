@@ -15,6 +15,6 @@ public interface StudentService {
 
     List<Student> getAllDate();
 
-    StudentDto Update(Long id, StudentDto student);
+    StudentDto update(Long id, StudentDto student);
 
 }

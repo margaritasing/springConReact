@@ -29,9 +29,6 @@ public class StudentController {
 
 
 
-
-
-
     @GetMapping("/getAll")
     public List<Student> list(){
         return studentService.getAllDate();
@@ -63,6 +60,19 @@ public class StudentController {
         }
 
 
+    }
+
+    @PutMapping(value="/{id}")
+    public ResponseEntity<?> update( @RequestBody StudentDto studentDtoO,@PathVariable(value = "id")Long id) {
+
+        try {
+            studentService.update(id, studentDtoO);
+            String fineId = messageSource.getMessage("success.update.fine",new Object[]{"Student"}, Locale.US);
+            return ResponseEntity.status(HttpStatus.OK).body(fineId);
+        }catch (Exception e){
+            String badId = messageSource.getMessage("bad.id.testimonial",new Object[]{"Student"}, Locale.US);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(badId);
+        }
     }
 
 

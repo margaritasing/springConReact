@@ -53,7 +53,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public StudentDto Update(Long id, StudentDto student) {
+    public StudentDto update(Long id, StudentDto student) {
         studentRepository.findById(id).map(p -> {
 
             if (student.getName() != null) {
