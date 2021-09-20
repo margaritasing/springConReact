@@ -28,4 +28,14 @@ public class StudentServiceImpl implements StudentService {
     public List<Student> getAllStudents() {
         return studentRepository.findAll();
     }
+
+    @Override
+    public void borrar(Long id) {
+
+    }
+
+    @Override
+    public Student Update(Student student) {
+        return null;
+    }
 }
