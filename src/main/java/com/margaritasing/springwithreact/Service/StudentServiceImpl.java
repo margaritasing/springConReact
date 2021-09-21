@@ -4,7 +4,8 @@ package com.margaritasing.springwithreact.Service;
 import com.margaritasing.springwithreact.Excepciones.StudentNotFoung;
 import com.margaritasing.springwithreact.Model.Student;
 import com.margaritasing.springwithreact.Repository.StudentRepository;
-import com.margaritasing.springwithreact.dto.StudentDto;
+import com.margaritasing.springwithreact.Dto.StudentDto;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,29 +16,29 @@ import java.util.stream.Collectors;
 public class StudentServiceImpl implements StudentService {
 
     public final StudentRepository studentRepository;
+    private final ModelMapper modelMapper;
 
     @Autowired
-    public StudentServiceImpl(StudentRepository studentRepository) {
+    public StudentServiceImpl(StudentRepository studentRepository, ModelMapper modelMapper) {
         this.studentRepository = studentRepository;
+        this.modelMapper = modelMapper;
     }
 
 
+
     @Override
-    public Student saveStudent(Student student) {
+    public StudentDto saveStudent(Student student) {
         if (student.getName() != null || student.getAddress() != null)
             studentRepository.save(student);
-        return student;
+        return convertirEntitytoStudentDto(student);
 
     }
 
 
     @Override
     public List<String> getAllStudents(Long id) {
-        List<Student> studentList = studentRepository.findAll();
-        return studentList
-                .stream()
-                .map(Student::getName)
-                .collect(Collectors.toList());
+        Student student = studentRepository.findById(id).orElse(null);
+        return (List<String>) convertirEntitytoStudentDto(student);
     }
 
     @Override
@@ -47,26 +48,48 @@ public class StudentServiceImpl implements StudentService {
         
     }
 
+    public List<StudentDto> getAllStudentDto(){
+        return studentRepository.findAll()
+                .stream()
+                .map(this::convertirEntitytoStudentDto)
+                .collect(Collectors.toList());
+
+    }
+
     @Override
     public List<Student> getAllDate() {
+
         return studentRepository.findAll();
     }
 
     @Override
-    public StudentDto update(Long id, StudentDto student) {
+    public StudentDto update(Long id, StudentDto studentDto) {
         studentRepository.findById(id).map(p -> {
 
-            if (student.getName() != null) {
-                p.setName(student.getName());
-            } else student.setName(p.getName());
+            if (studentDto.getName() != null) {
+                p.setName(studentDto.getName());
+            } else studentDto.setName(p.getName());
 
-            if (student.getAddress() != null) {
-                p.setName(student.getAddress());
-            } else student.setAddress(p.getAddress());
+            if (studentDto.getAddress() != null) {
+                p.setName(studentDto.getAddress());
+            } else studentDto.setAddress(p.getAddress());
 
             return studentRepository.save(p);
         }).orElseThrow(() -> new StudentNotFoung(id));
-            return student;
+            return studentDto;
 
     }
+
+    private StudentDto convertirEntitytoStudentDto(Student student){
+        return modelMapper.map(student, StudentDto.class);
+
+    }
+
+    private Student convertirDtoToEntity(Student studentDto){
+        return modelMapper.map(studentDto, Student.class);
+    }
+
+
+
+
 }

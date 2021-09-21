@@ -1,13 +1,13 @@
 package com.margaritasing.springwithreact.Service;
 
 import com.margaritasing.springwithreact.Model.Student;
-import com.margaritasing.springwithreact.dto.StudentDto;
+import com.margaritasing.springwithreact.Dto.StudentDto;
 
 import java.util.List;
 
 public interface StudentService {
 
-    Student saveStudent(Student student);
+    StudentDto saveStudent(Student student);
 
     List<String> getAllStudents(Long id);
 

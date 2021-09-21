@@ -1,12 +1,10 @@
-package com.margaritasing.springwithreact.dto;
+package com.margaritasing.springwithreact.Dto;
 
 import lombok.*;
 
+
+
 @Data
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
 public class StudentDto {
 
     private String name;

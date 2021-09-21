@@ -2,14 +2,13 @@ package com.margaritasing.springwithreact.Controller;
 
 import com.margaritasing.springwithreact.Model.Student;
 import com.margaritasing.springwithreact.Service.StudentService;
-import com.margaritasing.springwithreact.dto.StudentDto;
+import com.margaritasing.springwithreact.Dto.StudentDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Locale;
